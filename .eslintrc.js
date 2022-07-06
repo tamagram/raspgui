@@ -1,29 +1,29 @@
 module.exports = {
-    "env": {
-        "browser": true,
-      "node": true,
-        "es2021": true
+  env: {
+    browser: true,
+    node: true,
+    es2021: true,
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  plugins: ["react", "@typescript-eslint"],
+  rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      { extensions: [".js", ".ts", ".jsx", "tsx"] },
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-   "react/react-in-jsx-scope": "off",  
-   "react/jsx-filename-extension": [1, { "extensions": [".js", ".ts", ".jsx", "tsx"] }],
-'@typescript-eslint/no-var-requires': 0,
-    }
-}
+    "@typescript-eslint/no-var-requires": 0,
+  },
+};
