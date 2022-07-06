@@ -3,6 +3,7 @@
   "main": "main/index.js",
   "productName": "ElectronTypescriptNext",
   "scripts": {
+    "fmt": "yarn prettier --write .",
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
     "build-renderer": "next build renderer && next export renderer",
