@@ -1,6 +1,7 @@
 module.exports = {
     "env": {
         "browser": true,
+      "node": true,
         "es2021": true
     },
     "extends": [
@@ -21,5 +22,8 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+   "react/react-in-jsx-scope": "off",  
+   "react/jsx-filename-extension": [1, { "extensions": [".js", ".ts", ".jsx", "tsx"] }],
+'@typescript-eslint/no-var-requires': 0,
     }
 }
