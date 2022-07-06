@@ -1,0 +1,7 @@
+# Ignore artifacts:
+.git
+.swc
+node_modules
+yarn.lock
+
+
