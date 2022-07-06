@@ -25,6 +25,7 @@
     "@types/react-dom": "^16.9.9",
     "electron": "^13",
     "electron-builder": "^23.0.3",
+    "eslint": "^8.19.0",
     "next": "latest",
     "prettier": "2.7.1",
     "rimraf": "^3.0.0",
