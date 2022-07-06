@@ -10,6 +10,8 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import ChartStreaming from "chartjs-plugin-streaming";
+import 'chartjs-adapter-luxon';
 
 ChartJS.register(
   CategoryScale,
@@ -18,7 +20,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartStreaming
 );
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -41,13 +44,37 @@ const data = {
   ],
 };
 
+const options = {
+  plugins: {
+    streaming: {
+      duration: 20000
+    }
+  },
+  scales: {
+    x: {
+      type: 'realtime',
+      realtime: {
+        duration: 20000,
+onRefresh: chart => {
+            chart.data.datasets.forEach(dataset => {
+              dataset.data.push({
+                x: Date.now(),
+                y: Math.random() * 100
+              });
+            });
+          }
+      }
+    }
+  }
+}
+
 const DashboardPage = () => {
   return (
     <Layout title="Dashboard">
       <h1 className="text-5xl underline">This is dashboard</h1>
       <p>text here</p>
       <div className="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] dark:text-gray-400">
-        <Line data={data} width={100} height={50} />
+        <Line data={data} width={100} height={50} options={options}/>
       </div>
     </Layout>
   );
