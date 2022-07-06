@@ -26,6 +26,9 @@ const IndexPage = () => {
         <Link href="/about">
           <a>About</a>
         </Link>
+        <Link href="/dashboard">
+          <a>Dashboard</a>
+        </Link>
       </p>
     </Layout>
   );
