@@ -4,6 +4,7 @@
   "productName": "ElectronTypescriptNext",
   "scripts": {
     "fmt": "yarn prettier --write .",
+    "lint": "yarn run eslint .",
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
     "build-renderer": "next build renderer && next export renderer",
