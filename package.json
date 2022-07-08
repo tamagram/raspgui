@@ -1,4 +1,6 @@
 {
+  "name": "raspgui",
+  "version": "0.0.1",
   "private": true,
   "main": "main/index.js",
   "productName": "ElectronTypescriptNext",
