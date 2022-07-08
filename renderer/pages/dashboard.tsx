@@ -12,6 +12,9 @@ import {
 import { Line } from "react-chartjs-2";
 import StreamingPlugin from "chartjs-plugin-streaming";
 import "chartjs-adapter-luxon";
+import { useEffect, useState } from "react";
+import { getData } from "../utils/sensor";
+import { Sensor } from "../interfaces";
 
 ChartJS.register(
   CategoryScale,
@@ -45,10 +48,24 @@ const data = {
 };
 
 const DashboardPage = () => {
+  const [json, setJson] = useState<Sensor>({
+    time: Date.now(),
+    temperature: 0,
+    humidity: 0,
+  });
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      (async () => {
+        const data: Sensor = await getData();
+        setJson(data);
+      })();
+    }, 10000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <Layout title="Dashboard">
       <h1 className="text-5xl underline">This is dashboard</h1>
-      <p>text here</p>
+      <p>{JSON.stringify(json)}</p>
       <div className="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] dark:text-gray-400">
         <Line
           data={data}
@@ -68,8 +85,8 @@ const DashboardPage = () => {
                   onRefresh: (chart) => {
                     chart.data.datasets.forEach((dataset) => {
                       dataset.data.push({
-                        x: Date.now(),
-                        y: Math.random() * 100,
+                        x: json.time,
+                        y: json.temperature,
                       });
                     });
                   },

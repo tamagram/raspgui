@@ -19,3 +19,9 @@ export type User = {
   id: number;
   name: string;
 };
+
+export type Sensor = {
+  time: number;
+  temperature: number;
+  humidity: number;
+};
