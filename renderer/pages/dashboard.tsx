@@ -59,7 +59,7 @@ const DashboardPage = () => {
         const data: Sensor = await getData();
         setJson(data);
       })();
-    }, 10000);
+    }, 1000);
     return () => clearInterval(intervalId);
   }, []);
   return (
