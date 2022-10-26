@@ -9,12 +9,12 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 import StreamingPlugin from "chartjs-plugin-streaming";
 import "chartjs-adapter-luxon";
-import { useEffect, useState } from "react";
-import { getData } from "../utils/sensor";
-import { Sensor } from "../interfaces";
+import {useEffect, useState} from "react";
+import {getData} from "../utils/sensor";
+import {Sensor} from "../interfaces";
 
 ChartJS.register(
   CategoryScale,
@@ -59,13 +59,81 @@ const DashboardPage = () => {
         const data: Sensor = await getData();
         setJson(data);
       })();
-    }, 1000);
+    }, 10000);
     return () => clearInterval(intervalId);
   }, []);
   return (
     <Layout title="Dashboard">
-      <h1 className="text-5xl underline">This is dashboard</h1>
-      <p>{JSON.stringify(json)}</p>
+      <section className="flex flex-row space-x-9">
+        <div>
+          <div className="flex flex-col">
+            現在の暑さ指数
+            <div className="flex flex-row items-end">
+              <div className="text-9xl">
+                {Math.round(json.temperature)}
+              </div>
+              <div className="text-3xl">
+                °C
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-row space-x-9">
+          <div className="flex flex-col">
+            温度
+            <div className="flex flex-row items-end">
+              <div className="text-5xl">
+                {Math.round(json.temperature)}
+              </div>
+              <div className="text-3xl">
+                °C
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            湿度
+            <div className="flex flex-row items-end">
+              <div className="text-5xl">
+                {Math.round(json.humidity)}
+              </div>
+              <div className="text-3xl">
+                °C
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="">
+        過去の厚さ指数と比較
+        <div className="flex flex-row space-x-9">
+          <div className="flex flex-col">
+            10分前より
+            <div className="flex flex-row items-end">
+              <div className="text-5xl">
+                {Math.round(json.temperature)}
+              </div>
+              <div className="text-3xl">
+                °C
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            20分前より
+            <div className="flex flex-row items-end">
+              <div className="text-5xl">
+                {Math.round(json.humidity)}
+              </div>
+              <div className="text-3xl">
+                °C
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="">
+        過去の厚さ指数の推移
+      </section>
       <div className="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] dark:text-gray-400">
         <Line
           data={data}
