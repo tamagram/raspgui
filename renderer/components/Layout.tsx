@@ -36,7 +36,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
         </div>
       </nav>
     </header>
-    <main className="flex flex-col px-4 py-4">{children}</main>
+    <main className="flex flex-col px-10 py-4">{children}</main>
     <footer className="mt-auto px-4 py-3">
       <hr className="py-1" />
       <span>I&apos;m here to stay (Footer)</span>
