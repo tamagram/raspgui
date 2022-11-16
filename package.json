@@ -15,7 +15,7 @@
     "build": "npm run build-renderer && npm run build-electron",
     "pack-app": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "dist:raspberry": "npm run build && electron-builder",
+    "dist:raspberry": "npm run build && electron-builder --linux deb --armv7l",
     "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json"
   },
   "dependencies": {
